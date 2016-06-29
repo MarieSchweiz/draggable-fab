@@ -29,9 +29,15 @@ h1{
     padding-left: 15.16%;
     padding-top: 10vh;
     margin: 0;
-    font-size: 1.3em;
+    font-size: 1.4em;
     font-weight: 300;
 }
+p {
+    padding-left: 15.16%;
+    font-weight: 100;
+}
+
+a,a:hover,a:visited {color:#fff;}
 
 .raster {
     width: 100%;
@@ -97,8 +103,7 @@ h1{
     cursor: pointer; 
     touch-action: none;
     position: absolute;
-    top: 80%;
-    left: 80%;
+    
     width: 60px;
     height: 60px;
     
