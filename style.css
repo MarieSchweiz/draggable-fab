@@ -1,0 +1,141 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+html,body{
+    margin: 0;
+    padding: 0;
+    background: #000;
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', Arial, sans-serif;
+    color:#fff;
+    font-size: 1em;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    
+
+}
+
+body {
+    background: url(thumb_IMG_0052_1024.jpg) no-repeat center;
+    background-size:cover;
+}
+
+.wrapp {
+    width: 100%;
+    height: 100%;
+}
+
+h1{
+    padding-left: 15.16%;
+    padding-top: 10vh;
+    margin: 0;
+    font-size: 1.3em;
+    font-weight: 300;
+}
+
+.raster {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    
+    background-color:rgba(114, 189, 172, 0.3);
+}
+
+.raster-position {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.raster-position .layer li {
+    background: none;
+}
+
+.hide {
+    display: none;
+}
+
+.layer {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    z-index: 200;
+}
+
+.layer li {
+    width:33.33%;
+    height: 20%;
+    list-style-type: none;
+    background: url(plus.svg) no-repeat center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/**
+.layer li:hover {
+    background:#fff;
+} **/
+
+.layer li.point-disabled {
+    background-image: none;
+}
+
+.layer li.point-hover {
+    background: url(highlight.svg) no-repeat center;
+    
+}
+
+.fab{
+    cursor: pointer; 
+    touch-action: none;
+    position: absolute;
+    top: 80%;
+    left: 80%;
+    width: 60px;
+    height: 60px;
+    
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+
+    background: rgb(6, 206, 160);
+    background-image: url(check.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 300px;
+    z-index: 500;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.20);
+
+    /*transition: left 5000ms ease-in 0;*/
+}
+
+.highlight {
+    background: rgb(13, 253, 200); 
+    background-image: url(check.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transition: background 100ms ease-in-out 0;
+}
+
+.elevated {
+    box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.46);
+    background-color: rgb(22, 253, 200);
+    background-image: url(move.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    /*transition:background-color,top,box-shadow, 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);*/
+
+
+}
+
+.icon {
+    margin: 18px;
+}

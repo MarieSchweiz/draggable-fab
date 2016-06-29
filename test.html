@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+    <head>
+        <title>Hammertest</title>
+        <link rel="stylesheet" href="style.css">
+        <style>
+
+
+        </style>
+        
+    </head>
+    <body>
+        <h1>The draggable FAB demo</h1>
+
+    <div class="raster hide">
+        <ul class="layer">
+            <li class="point-disabled"></li>
+            <li class="point-disabled"></li>
+            <li class="point-active"></li>
+            <li class="point-disabled"></li>
+            <li class="point-disabled"></li>
+            <li class="point-active"></li>
+            <li class="point-disabled"></li>
+            <li class="point-active"></li>
+            <li class="point-active"></li>
+            <li class="point-active"></li>
+            <li class="point-active"></li>
+            <li class="point-active"></li>
+            <li class="point-active"></li>
+            <li class="point-active"></li>
+            <li class="point-active"></li>
+        </ul>
+    </div>
+
+        <div class="fab">OK</div>
+    </body>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/hammerjs/2.0.8/hammer.min.js"></script>
+  
+        <script>
+
+            var myElement = document.getElementsByClassName('fab')[0];
+            var hammertime = new Hammer(myElement);
+
+            hammertime.get('press').set({ time: 300,threshold: 10}).recognizeWith(hammertime.get('pan').set({ direction: Hammer.DIRECTION_ALL ,threshold: 0, velocity: 0 }));
+
+            hammertime.on('press', function(event) {
+                console.log("icke bin pressed");
+
+                $('div.raster').removeClass('hide');
+                $('div.raster').fadeIn();                
+                //$('div.fab').addClass('elevated');
+
+                //myElement.style.setProperty("top", "10px");
+                hammertime.on('pan', function(event) {
+                console.log("icke pan rum");
+                myElement.style.setProperty( "top", event.pointers[0].pageY - 30 + "px");
+                myElement.style.setProperty( "left", event.pointers[0].pageX - 30 + "px" );
+                });
+            });
+            
+            hammertime.on('panend', function() {
+                console.log("ick lass los")
+                $('div.raster').addClass('hide');
+                hammertime.off('pan',function(){
+                    console.log('icke hab nie gesagt dit jet');
+                });
+            });
+
+        </script>
+</html>
