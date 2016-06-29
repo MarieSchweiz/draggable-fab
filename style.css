@@ -16,8 +16,8 @@ html,body{
 }
 
 body {
-    background: url(thumb_IMG_0052_1024.jpg) no-repeat center;
-    background-size:cover;
+    background: #91D0BD url(thumb_IMG_0052_1024.jpg) no-repeat center;
+    background-size:contain;
 }
 
 .wrapp {
