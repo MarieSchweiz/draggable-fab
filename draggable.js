@@ -58,22 +58,26 @@ hammertime.on('press', function() {
             var topposition = points[i].offset.top;
             var leftposition = points[i].offset.left;
 
-            //sollte der mauszeiger auf der y achse größer sein als die top position eines li's 
+            // Check the top and left position
             if (    topposition <= event.pointers[0].pageY && 
                     leftposition <= event.pointers[0].pageX )
             {
             
-            // Schauen ob die position kleiner is als die breite des lis
+            // calculate with width and height the match
               if (    event.pointers[0].pageX < leftposition + points[i].width && 
                             event.pointers[0].pageY < topposition + points[i].height)
                             {
                             
+                            // check for active or inactive points
                             activestatus = $(`li#${points[i].id}`).hasClass('point-active');
                             if (activestatus === true){
-                            $(`li#${points[i].id}`).addClass('point-hover');
-                            thisisit = points[i].id;
-                            console.log(`li#${points[i].id}`);}
-   
+
+                                // add a class for a hover effect
+                                $(`li#${points[i].id}`).addClass('point-hover');
+                                // set a variable used later to position the Button
+                                thisisit = points[i].id;
+                                
+                                //console.log(`li#${points[i].id}`);}
                             }
                     else {
                             $(`li#${points[i].id}`).removeClass('point-hover');
