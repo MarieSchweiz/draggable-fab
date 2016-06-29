@@ -16,9 +16,9 @@ var newpositionleft;
 var newpositiontop;
 
 // FAB initial positioning
-
-//$('fab.div').css( top, (getwidth / 100) * 30 + 'px');
-
+$(document).ready(function(){
+    $('div.fab').css(`top:${50 - ((getheight / 100) * 30)}%; left:${50 - ((getwidth / 100) * 30)}%; background:#fff;`);}
+);
 
 // activate Hammer press gesture
 
@@ -79,18 +79,19 @@ hammertime.on('press', function() {
                                 
                                 //console.log(`li#${points[i].id}`);}
                             }
-                    else {
-                            $(`li#${points[i].id}`).removeClass('point-hover');
-                         }       
+                    
+                    else { $(`li#${points[i].id}`).removeClass('point-hover'); }       
             }
-            else {
-                            $(`li#${points[i].id}`).removeClass('point-hover');
-                         }
-        };
+            else { $(`li#${points[i].id}`).removeClass('point-hover');}
+        }
+        else { $(`li#${points[i].id}`).removeClass('point-hover');}
+        }
 
         $('div.fab').css( "top", event.pointers[0].pageY -30 );
         $('div.fab').css( "left", event.pointers[0].pageX -30 );
     
+    
+
     });
 });
 

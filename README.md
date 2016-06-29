@@ -14,6 +14,8 @@ Press the button and drag it around. You'll see the button snaps to the closest 
 
 I try to code as good as possible but as a designer I have my limits. I'like to invite everyone figuring out a better search and matching algorithm for my pointer and raster layout.
 
+Unfortunatly there is no mouseover available. So I had to create my own. It searches while you move the button. I admit its not a very performance friendly solution.
+
 ```
 
 for(i = points.length - 1; i >= 1; i--){
