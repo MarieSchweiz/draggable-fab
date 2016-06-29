@@ -16,9 +16,14 @@ var newpositionleft;
 var newpositiontop;
 
 // FAB initial positioning
-$(document).ready(function(){
-    $('div.fab').css(`top:${50 - ((getheight / 100) * 30)}%; left:${50 - ((getwidth / 100) * 30)}%; background:#fff;`);}
-);
+var fabheight = 50 -(30 / (getheight / 100));
+var fableft = 50 -(30 / (getwidth / 100));
+
+$('div.fab').css({
+    "top": fabheight+"%",
+    "left": fableft+"%"
+});
+
 
 // activate Hammer press gesture
 
