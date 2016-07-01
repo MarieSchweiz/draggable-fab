@@ -5,7 +5,7 @@ var thisisit;
 //var datenObjekte = $dieLIs.toArray().map(extrahiereDatenObjektausLi);
 
 // unwrapp a jquery element into a html element
-var myElement = $("div.fab").get(0);
+var myElement = $("a.fab").get(0);
 // create a new Hammer element
 var hammertime = new Hammer(myElement);
 
@@ -15,11 +15,15 @@ var getwidth = $(window).width();
 var newpositionleft;
 var newpositiontop;
 
+document.ontouchmove = function(event){
+    event.preventDefault();
+}
+
 // FAB initial positioning
 var fabheight = 50 -(30 / (getheight / 100));
 var fableft = 50 -(30 / (getwidth / 100));
 
-$('div.fab').css({
+$('a.fab').css({
     "top": fabheight+"%",
     "left": fableft+"%"
 });
@@ -29,15 +33,23 @@ $('div.fab').css({
 
 hammertime.get('press').set({ time: 500,threshold: 50, enable: true});
 hammertime.get('pan').set({ direction: Hammer.DIRECTION_ALL ,threshold: 0, velocity: 0 ,enable: false})
+//hammertime.get('tap').set({})
 
 // Hammer für "press" erlauben
+
+hammertime.on('tap', function() {
+    $('a.fab').animate({
+        background: "rgb(255,255,255)"
+    }, 500 );
+    console.log("jo");
+});
 
 hammertime.on('press', function() {
 
 
     $('div.raster').removeClass('hide');
     $('div.raster').fadeIn();                
-    $('div.fab').addClass('elevated');
+    $('a.fab').addClass('elevated');
     
     // generates an array and the data we need to catch the right div
     $(document).ready( function () {
@@ -51,7 +63,7 @@ hammertime.on('press', function() {
     
     });
 
-    console.log(points[6].offset.top);
+    //console.log(points[6].offset.top);
 
     hammertime.get('pan').set({enable: true})
     // activate Hammer panmove (dragging)
@@ -92,8 +104,8 @@ hammertime.on('press', function() {
         else { $(`li#${points[i].id}`).removeClass('point-hover');}
         }
 
-        $('div.fab').css( "top", event.pointers[0].pageY -30 );
-        $('div.fab').css( "left", event.pointers[0].pageX -30 );
+        $('a.fab').css( "top", event.pointers[0].pageY -30 );
+        $('a.fab').css( "left", event.pointers[0].pageX -30 );
     
     
 
@@ -112,14 +124,14 @@ hammertime.on('panend pressup', function() {
     newpositiontop = (elementsizeh / 2 + Math.round(elementpositiontop)) / (getheight / 100) - (30 / (getheight / 100));
     newpositionleft = (elementsizew / 2 + Math.round(elementpositiontleft)) / (getwidth / 100) - (30 / (getwidth / 100));
     // removing classes in jQuery
-    $('div.fab').removeClass('highlight');
-    $('div.fab').removeClass('elevated');    
+    $('a.fab').removeClass('highlight');
+    $('a.fab').removeClass('elevated');    
     $('div.raster').fadeOut();
 
     
 
-    $('div.fab').css( "top", (newpositiontop + "%") );
-    $('div.fab').css( "left", (newpositionleft + "%") );
+    $('a.fab').css( "top", (newpositiontop + "%") );
+    $('a.fab').css( "left", (newpositionleft + "%") );
 
     
 
