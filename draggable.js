@@ -15,6 +15,10 @@ var getwidth = $(window).width();
 var newpositionleft;
 var newpositiontop;
 
+document.ontouchmove = function(event){
+    event.preventDefault();
+}
+
 // FAB initial positioning
 var fabheight = 50 -(30 / (getheight / 100));
 var fableft = 50 -(30 / (getwidth / 100));
@@ -29,8 +33,16 @@ $('div.fab').css({
 
 hammertime.get('press').set({ time: 500,threshold: 50, enable: true});
 hammertime.get('pan').set({ direction: Hammer.DIRECTION_ALL ,threshold: 0, velocity: 0 ,enable: false})
+//hammertime.get('tap').set({})
 
 // Hammer für "press" erlauben
+
+hammertime.on('tap', function() {
+    $('div.fab').animate({
+        background: "rgb(255,255,255)"
+    }, 500 );
+    console.log("jo");
+});
 
 hammertime.on('press', function() {
 
@@ -51,7 +63,7 @@ hammertime.on('press', function() {
     
     });
 
-    console.log(points[6].offset.top);
+    //console.log(points[6].offset.top);
 
     hammertime.get('pan').set({enable: true})
     // activate Hammer panmove (dragging)
