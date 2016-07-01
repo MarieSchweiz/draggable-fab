@@ -41,48 +41,27 @@ hammertime.on('tap', function() {
     $('a.fab').animate({
         background: "rgb(255,255,255)"
     }, 500 );
-    console.log("jo");
+    console.log("this is a tap");
 });
 
-hammertime.on('press', function() {
 
+// positioning the button
 
-    $('div.raster').removeClass('hide');
-    $('div.raster').fadeIn();                
-    $('a.fab').addClass('elevated');
-    
-    // generates an array and the data we need to catch the right div
-    $(document).ready( function () {
+function where(pointerleft,pointertop) {
 
-        for (i = 0; i < points.length; i++ ){ 
-            points[i].offset = $(`ul.layer li#${[i]}`).offset();
-            points[i].width = $(`ul.layer li#${[i]}`).width();
-            points[i].height = $(`ul.layer li#${[i]}`).height();
-            
-        };
-    
-    });
-
-    //console.log(points[6].offset.top);
-
-    hammertime.get('pan').set({enable: true})
-    // activate Hammer panmove (dragging)
-    hammertime.on('panmove', function(event) {
-    
-
-        for(i = points.length - 1; i >= 1; i--){
+    for(i = points.length - 1; i >= 1; i--){
             
             var topposition = points[i].offset.top;
             var leftposition = points[i].offset.left;
 
             // Check the top and left position
-            if (    topposition <= event.pointers[0].pageY && 
-                    leftposition <= event.pointers[0].pageX )
+            if (    topposition <= pointertop && 
+                    leftposition <= pointerleft)
             {
             
             // calculate with width and height the match
-              if (    event.pointers[0].pageX < leftposition + points[i].width && 
-                            event.pointers[0].pageY < topposition + points[i].height)
+              if (    pointerleft < leftposition + points[i].width && 
+                      pointertop < topposition + points[i].height)
                             {
                             
                             // check for active or inactive points
@@ -103,14 +82,55 @@ hammertime.on('press', function() {
         }
         else { $(`li#${points[i].id}`).removeClass('point-hover');}
         }
+    }
+
+
+// generates an array and the data we need to catch the right div
+    function generate() {
+        for (i = 0; i < points.length; i++ ){ 
+            points[i].offset = $(`ul.layer li#${[i]}`).offset();
+            points[i].width = $(`ul.layer li#${[i]}`).width();
+            points[i].height = $(`ul.layer li#${[i]}`).height();
+        };
+    }
+
+
+
+
+hammertime.on('press', function(event) {
+
+    // fade in layer with rasterpoints (the layer can be designed via css. Use classes to activate or deactivate the points)
+    $('div.raster').removeClass('hide');
+    $('div.raster').fadeIn();                
+    $('a.fab').addClass('elevated');
+
+    // call function to fill an array
+    generate();
+
+    //position the pointer and FAB, call the posioning function
+    pointerleft = event.pointers[0].pageX;
+    pointertop = event.pointers[0].pageY;
+    where(pointerleft,pointertop);
+    
+    
+
+    hammertime.get('pan').set({enable: true})
+    // activate Hammer panmove (dragging)
+    hammertime.on('panmove', function(event) {
+        
+        //position the pointer and FAB, call the posioning function
+        pointertop = event.pointers[0].pageY;
+        pointerleft = event.pointers[0].pageX;
 
         $('a.fab').css( "top", event.pointers[0].pageY -30 );
         $('a.fab').css( "left", event.pointers[0].pageX -30 );
-    
-    
 
-    });
-});
+        //call the hover function
+        where(pointerleft,pointertop);
+    
+    }); 
+
+ });
 
 // Using Hammer for FAB release
 
