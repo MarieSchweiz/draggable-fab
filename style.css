@@ -102,8 +102,7 @@ a,a:hover,a:visited {color:#fff;}
 a.fab{
     cursor: pointer; 
     touch-action: none;
-    position: absolute;
-    
+    position: absolute;    
     width: 60px;
     height: 60px;
 
