@@ -99,13 +99,19 @@ a,a:hover,a:visited {color:#fff;}
     
 }
 
-a.fab{
+button.fab{
     cursor: pointer; 
     touch-action: none;
     position: absolute;    
     width: 60px;
     height: 60px;
 
+    transition: top 2000ms ease-in 0;
+    transition: left 2000ms ease-in 0;
+
+    border: none;
+    outline: none;
+    
     -webkit-tap-highlight-color: rgba(255, 255, 255, 1);   
     -webkit-touch-callout: none !important;
     -webkit-user-select: none !important;
@@ -120,7 +126,7 @@ a.fab{
 
 }
 
-a.fab:hover{
+button.fab:hover{
     background: rgb(10, 216, 160);
     background-image: url(check.svg);
     background-position: center;
@@ -128,7 +134,7 @@ a.fab:hover{
     transition: background 100ms ease-in 0;
 }
 
-a.fab:active{
+button.fab:active{
     background: rgb(13, 253, 200);
     background-image: url(check.svg);
     background-position: center;
@@ -149,14 +155,14 @@ a.fab:active{
     transition: background 100ms ease-in-out 0;
 }
 
-a.elevated:active {
+button.elevated:active {
     box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.46);
     background-color: rgb(22, 253, 200);
     background-image: url(move.svg);
     background-position: center;
     background-repeat: no-repeat;
-    /*transition:background-color,top,box-shadow, 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);*/
 
+    /*transition:background-color,top,box-shadow, 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);*/
 
 }
 
