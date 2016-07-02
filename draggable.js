@@ -5,7 +5,7 @@ var thisisit;
 //var datenObjekte = $dieLIs.toArray().map(extrahiereDatenObjektausLi);
 
 // unwrapp a jquery element into a html element
-var myElement = $("a.fab").get(0);
+var myElement = $("button.fab").get(0);
 // create a new Hammer element
 var hammertime = new Hammer(myElement);
 
@@ -23,7 +23,7 @@ document.ontouchmove = function(event){
 var fabheight = 50 -(30 / (getheight / 100));
 var fableft = 50 -(30 / (getwidth / 100));
 
-$('a.fab').css({
+$('button.fab').css({
     "top": fabheight+"%",
     "left": fableft+"%"
 });
@@ -38,7 +38,7 @@ hammertime.get('pan').set({ direction: Hammer.DIRECTION_ALL ,threshold: 0, veloc
 // Hammer für "press" erlauben
 
 hammertime.on('tap', function() {
-    $('a.fab').animate({
+    $('button.fab').animate({
         background: "rgb(255,255,255)"
     }, 500 );
     console.log("this is a tap");
@@ -102,7 +102,7 @@ hammertime.on('press', function(event) {
     // fade in layer with rasterpoints (the layer can be designed via css. Use classes to activate or deactivate the points)
     $('div.raster').removeClass('hide');
     $('div.raster').fadeIn();                
-    $('a.fab').addClass('elevated');
+    $('button.fab').addClass('elevated');
 
     // call function to fill an array
     generate();
@@ -122,8 +122,8 @@ hammertime.on('press', function(event) {
         pointertop = event.pointers[0].pageY;
         pointerleft = event.pointers[0].pageX;
 
-        $('a.fab').css( "top", event.pointers[0].pageY -30 );
-        $('a.fab').css( "left", event.pointers[0].pageX -30 );
+        $('button.fab').css( "top", event.pointers[0].pageY -30 );
+        $('button.fab').css( "left", event.pointers[0].pageX -30 );
 
         //call the hover function
         where(pointerleft,pointertop);
@@ -144,14 +144,15 @@ hammertime.on('panend pressup', function() {
     newpositiontop = (elementsizeh / 2 + Math.round(elementpositiontop)) / (getheight / 100) - (30 / (getheight / 100));
     newpositionleft = (elementsizew / 2 + Math.round(elementpositiontleft)) / (getwidth / 100) - (30 / (getwidth / 100));
     // removing classes in jQuery
-    $('a.fab').removeClass('highlight');
-    $('a.fab').removeClass('elevated');    
+    $('button.fab').removeClass('highlight');
+    $('button.fab').removeClass('elevated');    
     $('div.raster').fadeOut();
 
     
 
-    $('a.fab').css( "top", (newpositiontop + "%") );
-    $('a.fab').css( "left", (newpositionleft + "%") );
+    $('button.fab').css( "top", (newpositiontop + "%") );
+    $('button.fab').css( "left", (newpositionleft + "%") );
+    $('button.fab').css( "transition", "top 100ms ease-in 0" );
 
     
 
